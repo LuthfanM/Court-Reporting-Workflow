@@ -2,6 +2,8 @@
 
 A simplified workflow system for managing transcription jobs
 
+<img width="800" height="400" alt="Screenshot 2026-04-27 at 21 31 58" src="https://github.com/user-attachments/assets/c339d92b-47f1-477f-ab22-6a9107619202" />
+
 ## Features
 
 - Create transcription jobs
