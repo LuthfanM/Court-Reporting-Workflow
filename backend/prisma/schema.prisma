@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum JobStatus {
+  NEW
+  ASSIGNED
+  TRANSCRIBED
+  REVIEWED
+  COMPLETED
+}
+
+enum JobLocation {
+  PHYSICAL
+  REMOTE
+}
+
+model Job {
+  id  String @id @default(cuid(2))
+  caseName String
+  duration Int
+  location  String
+  jobLocation JobLocation
+  status JobStatus @default(NEW)
+
+  reporterId  String?
+  reporter    Reporter?       @relation(fields: [reporterId], references: [id])
+
+  editorId    String?
+  editor      Editor?         @relation(fields: [editorId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reporter {
+  id           String   @id @default(cuid())
+  name         String
+  location     String
+  isAvailable  Boolean  @default(true)
+
+  jobs         Job[]
+}
+
+model Editor {
+  id           String   @id @default(cuid())
+  name         String
+  isAvailable  Boolean  @default(true)
+
+  jobs         Job[]
+}

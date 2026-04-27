@@ -1,0 +1,5 @@
+const REPORTER_RATE_PER_MINUTE =
+  Number(process.env.REPORTER_RATE_PER_MINUTE) || 2000;
+const EDITOR_FLAT_FEE = Number(process.env.EDITOR_FLAT_FEE) || 50000;
+
+export { REPORTER_RATE_PER_MINUTE, EDITOR_FLAT_FEE };
