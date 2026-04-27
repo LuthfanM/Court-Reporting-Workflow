@@ -19,7 +19,8 @@ export function JobsPage() {
     "PHYSICAL",
   );
 
-  const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
+  const [_loading, setLoading] = useState(false);
 
   const loadData = useCallback(async () => {
     try {
@@ -43,6 +44,7 @@ export function JobsPage() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line
     void loadData();
   }, [loadData]);
 
@@ -161,4 +163,3 @@ export function JobsPage() {
     </div>
   );
 }
-

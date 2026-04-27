@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { api } from "../api";
 import { JobCard } from "@/components/cards/JobCard";
-import type { CurrentMonthTotalResponse, Editor, Job, Reporter } from "@/types/common";
+import type {
+  CurrentMonthTotalResponse,
+  Editor,
+  Job,
+  Reporter,
+} from "@/types/common";
 import { styles } from "./DashboardPage.styles";
 import { formatIDR, getCurrentMonthLabel } from "@/helpers/functions/math";
 
@@ -16,7 +21,8 @@ export function DashboardPage() {
   const [currentMonthTotal, setCurrentMonthTotal] =
     useState<CurrentMonthTotalResponse | null>(null);
 
-  const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
+  const [_loading, setLoading] = useState(false);
 
   const loadDashboard = useCallback(async () => {
     try {
@@ -43,6 +49,7 @@ export function DashboardPage() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line
     void loadDashboard();
   }, [loadDashboard]);
 

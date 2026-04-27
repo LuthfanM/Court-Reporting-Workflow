@@ -15,7 +15,9 @@ type PaymentResult = {
 export function PaymentsPage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [payments, setPayments] = useState<Record<string, PaymentResult>>({});
-  const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
+  const [_loading, setLoading] = useState(false);
+
   const [calculatingJobId, setCalculatingJobId] = useState<string | null>(null);
 
   const loadJobs = useCallback(async () => {
@@ -33,6 +35,7 @@ export function PaymentsPage() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line
     void loadJobs();
   }, [loadJobs]);
 
@@ -168,14 +171,18 @@ function PaymentJobCard({
           <div style={styles.assignmentLeft}>
             <p style={styles.assignmentLabel}>Reporter</p>
             <strong style={styles.assignmentValue}>
-              {job.reporter?.name ?? <span style={{ color: "red" }}>Not assigned</span>}
+              {job.reporter?.name ?? (
+                <span style={{ color: "red" }}>Not assigned</span>
+              )}
             </strong>
           </div>
 
           <div style={styles.assignmentRight}>
             <p style={styles.assignmentLabel}>Editor</p>
             <strong style={styles.assignmentValue}>
-              {job.editor?.name ?? <span style={{ color: "red" }}>Not assigned</span>}
+              {job.editor?.name ?? (
+                <span style={{ color: "red" }}>Not assigned</span>
+              )}
             </strong>
           </div>
         </div>
