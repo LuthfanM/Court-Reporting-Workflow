@@ -6,6 +6,8 @@ import { ReporterController } from "./controllers/ReporterController.js";
 import { EditorController } from "./controllers/EditorController.js";
 import { CommonController } from "./controllers/CommonController.js";
 import { PaymentController } from "./controllers/PaymentController.js";
+import http from "http";
+import { initWebSocket } from "./websocket.js";
 
 dotenv.config();
 
@@ -38,6 +40,11 @@ app.get("/reporters", ReporterController.listReporters);
 // Editor Routes
 app.get("/editors", EditorController.listEditors);
 
-app.listen(port, () => {
+const server = http.createServer(app);
+
+initWebSocket(server);
+
+server.listen(port, () => {
   console.log(`API running on http://localhost:${port}`);
+  console.log(`WebSocket running on ws://localhost:${port}`);
 });
